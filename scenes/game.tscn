@@ -1,8 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://dnaw6a364w2jb"]
+[gd_scene load_steps=6 format=3 uid="uid://dnaw6a364w2jb"]
 
 [ext_resource type="PackedScene" uid="uid://dlcvwruhlsbqm" path="res://scenes/player.tscn" id="1_hib5o"]
+[ext_resource type="Texture2D" uid="uid://cwgrkgl5rk6nf" path="res://assets/sprites/Mobile - Flappy Bird - Version 12 Sprites.png" id="2_btaik"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cfp6u"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qjri4"]
+texture = ExtResource("2_btaik")
+margins = Vector2i(0, 3)
+separation = Vector2i(2, 0)
+texture_region_size = Vector2i(26, 80)
+2:5/0 = 0
+2:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:5/0/physics_layer_0/angular_velocity = 0.0
+2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11.9324, -39.2444, 12.3125, -39.375, 11.6875, 39.625, -11.1875, 39.875)
+3:4/0 = 0
+3:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:4/0/physics_layer_0/angular_velocity = 0.0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-13, -20, 13, -20, 13, 20, -13, 20)
+
+[sub_resource type="TileSet" id="TileSet_bomas"]
+tile_size = Vector2i(26, 40)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_qjri4")
 
 [node name="Game" type="Node2D"]
 
@@ -16,5 +36,11 @@ zoom = Vector2(4, 4)
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(126, 221)
+position = Vector2(126, 223)
 shape = SubResource("WorldBoundaryShape2D_cfp6u")
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(126, 218)
+tile_set = SubResource("TileSet_bomas")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65534, 196609, 4, -262142, 131073, 5, -196603, 131073, 5, 5, 196609, 4, -262139, 131073, 5, -327672, 131073, 5, -131064, 196609, 4, -65528, 196609, 4)
