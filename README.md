@@ -1,2 +1,2 @@
-# flappybird
-Flappybird made with Godot
+# Flappybird
+Flappybird - made with Godot
