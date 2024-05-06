@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://dlcvwruhlsbqm"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_lhpcr"]
+[ext_resource type="Texture2D" uid="uid://cwgrkgl5rk6nf" path="res://assets/sprites/Mobile - Flappy Bird - Version 12 Sprites.png" id="1_seg84"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v1yj"]
+atlas = ExtResource("1_seg84")
+region = Rect2(0, 490, 28, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmwrd"]
+atlas = ExtResource("1_seg84")
+region = Rect2(28, 490, 28, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31wt2"]
+atlas = ExtResource("1_seg84")
+region = Rect2(56, 490, 28, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4phh0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v1yj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmwrd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31wt2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmwrd")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_oqbvk"]
+radius = 6.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_lhpcr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -7)
+sprite_frames = SubResource("SpriteFrames_4phh0")
+animation = &"flying"
+autoplay = "flying"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, -7)
+shape = SubResource("CircleShape2D_oqbvk")
