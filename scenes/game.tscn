@@ -1,32 +1,121 @@
-[gd_scene load_steps=6 format=3 uid="uid://dnaw6a364w2jb"]
+[gd_scene load_steps=15 format=3 uid="uid://dnaw6a364w2jb"]
 
 [ext_resource type="PackedScene" uid="uid://dlcvwruhlsbqm" path="res://scenes/player.tscn" id="1_hib5o"]
 [ext_resource type="Texture2D" uid="uid://cwgrkgl5rk6nf" path="res://assets/sprites/Mobile - Flappy Bird - Version 12 Sprites.png" id="2_btaik"]
+[ext_resource type="PackedScene" uid="uid://baegc1ql0oaox" path="res://scenes/bottom_pipe.tscn" id="2_clssr"]
+[ext_resource type="PackedScene" uid="uid://cxvdhmr4lonqt" path="res://scenes/top_pipe.tscn" id="3_osfey"]
+[ext_resource type="PackedScene" uid="uid://duiugal601a37" path="res://scenes/killzone.tscn" id="4_alc1y"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cfp6u"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qjri4"]
-texture = ExtResource("2_btaik")
-margins = Vector2i(0, 3)
-separation = Vector2i(2, 0)
-texture_region_size = Vector2i(26, 80)
-2:5/0 = 0
-2:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-2:5/0/physics_layer_0/angular_velocity = 0.0
-2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-11.9324, -39.2444, 12.3125, -39.375, 11.6875, 39.625, -11.1875, 39.875)
-3:4/0 = 0
-3:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
-3:4/0/physics_layer_0/angular_velocity = 0.0
-3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-13, -20, 13, -20, 13, 20, -13, 20)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gf70d"]
 
-[sub_resource type="TileSet" id="TileSet_bomas"]
-tile_size = Vector2i(26, 40)
-physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_qjri4")
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k4k6h"]
+normal = Vector2(0, 1)
+
+[sub_resource type="Animation" id="Animation_unuq8"]
+resource_name = "move"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(242, 216), Vector2(20, 216)]
+}
+
+[sub_resource type="Animation" id="Animation_bbqiv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(242, 216)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1vlpl"]
+_data = {
+"RESET": SubResource("Animation_bbqiv"),
+"move": SubResource("Animation_unuq8")
+}
+
+[sub_resource type="Animation" id="Animation_xunso"]
+resource_name = "move"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(242, 36), Vector2(20, 36)]
+}
+
+[sub_resource type="Animation" id="Animation_4j4ky"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(242, 36)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vpg0g"]
+_data = {
+"RESET": SubResource("Animation_4j4ky"),
+"move": SubResource("Animation_xunso")
+}
 
 [node name="Game" type="Node2D"]
 
+[node name="Background" type="Node" parent="."]
+
+[node name="Background" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(44, 138)
+texture = ExtResource("2_btaik")
+region_enabled = true
+region_rect = Rect2(0, 0, 143.912, 255.578)
+
+[node name="Background2" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(187, 138)
+texture = ExtResource("2_btaik")
+region_enabled = true
+region_rect = Rect2(0, 0, 143.912, 255.578)
+
+[node name="Background3" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(330, 137)
+texture = ExtResource("2_btaik")
+region_enabled = true
+region_rect = Rect2(0, 0, 143.912, 255.578)
+
 [node name="Player" parent="." instance=ExtResource("1_hib5o")]
+z_index = 5
 position = Vector2(130, 143)
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -34,13 +123,39 @@ position = Vector2(128, 140)
 zoom = Vector2(4, 4)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-6, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(126, 223)
 shape = SubResource("WorldBoundaryShape2D_cfp6u")
 
-[node name="TileMap" type="TileMap" parent="."]
-position = Vector2(126, 218)
-tile_set = SubResource("TileSet_bomas")
-format = 2
-layer_0/tile_data = PackedInt32Array(-65534, 196609, 4, -262142, 131073, 5, -196603, 131073, 5, 5, 196609, 4, -262139, 131073, 5, -327672, 131073, 5, -131064, 196609, 4, -65528, 196609, 4)
+[node name="Killzone" parent="." instance=ExtResource("4_alc1y")]
+position = Vector2(14, -10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(106, 234)
+shape = SubResource("WorldBoundaryShape2D_gf70d")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(94, 66)
+shape = SubResource("WorldBoundaryShape2D_k4k6h")
+
+[node name="Pipes" type="Node" parent="."]
+
+[node name="BottomPipe" parent="Pipes" instance=ExtResource("2_clssr")]
+position = Vector2(242, 216)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pipes/BottomPipe"]
+libraries = {
+"": SubResource("AnimationLibrary_1vlpl")
+}
+autoplay = "move"
+
+[node name="TopPipe" parent="Pipes" instance=ExtResource("3_osfey")]
+position = Vector2(242, 36)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pipes/TopPipe"]
+libraries = {
+"": SubResource("AnimationLibrary_vpg0g")
+}
+autoplay = "move"

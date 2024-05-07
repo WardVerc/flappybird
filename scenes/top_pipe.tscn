@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxvdhmr4lonqt"]
+
+[ext_resource type="Texture2D" uid="uid://cwgrkgl5rk6nf" path="res://assets/sprites/Mobile - Flappy Bird - Version 12 Sprites.png" id="1_q02ql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aloxe"]
+size = Vector2(24, 140)
+
+[node name="TopPipe" type="AnimatableBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_q02ql")
+region_enabled = true
+region_rect = Rect2(55.2952, 340.311, 27.1084, 143.207)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_aloxe")
