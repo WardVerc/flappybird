@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://dnaw6a364w2jb"]
+[gd_scene load_steps=16 format=3 uid="uid://dnaw6a364w2jb"]
 
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_b81lu"]
 [ext_resource type="PackedScene" uid="uid://dlcvwruhlsbqm" path="res://scenes/player.tscn" id="1_hib5o"]
 [ext_resource type="Texture2D" uid="uid://cwgrkgl5rk6nf" path="res://assets/sprites/Mobile - Flappy Bird - Version 12 Sprites.png" id="2_btaik"]
 [ext_resource type="PackedScene" uid="uid://baegc1ql0oaox" path="res://scenes/bottom_pipe.tscn" id="2_clssr"]
@@ -12,6 +13,21 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k4k6h"]
 normal = Vector2(0, 1)
+
+[sub_resource type="Animation" id="Animation_bbqiv"]
+length = 4.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(242, 216)]
+}
 
 [sub_resource type="Animation" id="Animation_unuq8"]
 resource_name = "move"
@@ -27,45 +43,13 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(242, 216), Vector2(20, 216)]
-}
-
-[sub_resource type="Animation" id="Animation_bbqiv"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(242, 216)]
+"values": [Vector2(300, 216), Vector2(-50, 216)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1vlpl"]
 _data = {
 "RESET": SubResource("Animation_bbqiv"),
 "move": SubResource("Animation_unuq8")
-}
-
-[sub_resource type="Animation" id="Animation_xunso"]
-resource_name = "move"
-length = 4.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(242, 36), Vector2(20, 36)]
 }
 
 [sub_resource type="Animation" id="Animation_4j4ky"]
@@ -83,6 +67,23 @@ tracks/0/keys = {
 "values": [Vector2(242, 36)]
 }
 
+[sub_resource type="Animation" id="Animation_xunso"]
+resource_name = "move"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(300, 36), Vector2(-50, 36)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vpg0g"]
 _data = {
 "RESET": SubResource("Animation_4j4ky"),
@@ -90,6 +91,10 @@ _data = {
 }
 
 [node name="Game" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_b81lu")
 
 [node name="Background" type="Node" parent="."]
 
@@ -139,6 +144,15 @@ shape = SubResource("WorldBoundaryShape2D_gf70d")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(94, 66)
 shape = SubResource("WorldBoundaryShape2D_k4k6h")
+
+[node name="ScoreLabel" type="Label" parent="."]
+offset_left = 109.0
+offset_top = 69.0
+offset_right = 149.0
+offset_bottom = 92.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Pipes" type="Node" parent="."]
 

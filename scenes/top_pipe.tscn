@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxvdhmr4lonqt"]
+[gd_scene load_steps=4 format=3 uid="uid://cxvdhmr4lonqt"]
 
 [ext_resource type="Texture2D" uid="uid://cwgrkgl5rk6nf" path="res://assets/sprites/Mobile - Flappy Bird - Version 12 Sprites.png" id="1_q02ql"]
+[ext_resource type="PackedScene" uid="uid://duiugal601a37" path="res://scenes/killzone.tscn" id="2_wtiuk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aloxe"]
 size = Vector2(24, 140)
@@ -13,4 +14,10 @@ region_enabled = true
 region_rect = Rect2(55.2952, 340.311, 27.1084, 143.207)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.999, 0.999)
+shape = SubResource("RectangleShape2D_aloxe")
+
+[node name="Killzone" parent="." instance=ExtResource("2_wtiuk")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 shape = SubResource("RectangleShape2D_aloxe")

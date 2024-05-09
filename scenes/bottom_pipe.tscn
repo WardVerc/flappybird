@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://baegc1ql0oaox"]
+[gd_scene load_steps=5 format=3 uid="uid://baegc1ql0oaox"]
 
+[ext_resource type="Script" path="res://scripts/bottom_pipe.gd" id="1_asuj1"]
 [ext_resource type="Texture2D" uid="uid://cwgrkgl5rk6nf" path="res://assets/sprites/Mobile - Flappy Bird - Version 12 Sprites.png" id="1_wy8yh"]
+[ext_resource type="PackedScene" uid="uid://duiugal601a37" path="res://scenes/killzone.tscn" id="2_t4aih"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ami78"]
 size = Vector2(23, 135)
 
 [node name="BottomPipe" type="AnimatableBody2D"]
+script = ExtResource("1_asuj1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_wy8yh")
@@ -13,5 +16,14 @@ region_enabled = true
 region_rect = Rect2(83.8814, 322.877, 26.5027, 136.728)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 3
+position = Vector2(-0.5, 0.5)
+scale = Vector2(0.999, 0.999)
+shape = SubResource("RectangleShape2D_ami78")
+
+[node name="Killzone" parent="." instance=ExtResource("2_t4aih")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+light_mask = 3
 position = Vector2(-0.5, 0.5)
 shape = SubResource("RectangleShape2D_ami78")
