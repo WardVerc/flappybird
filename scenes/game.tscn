@@ -23,10 +23,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(242, 216)]
+"values": [Vector2(420, 216), Vector2(-25, 216)]
 }
 
 [sub_resource type="Animation" id="Animation_unuq8"]
@@ -43,7 +43,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(300, 216), Vector2(-50, 216)]
+"values": [Vector2(420, 216), Vector2(-25, 216)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1vlpl"]
@@ -53,7 +53,7 @@ _data = {
 }
 
 [sub_resource type="Animation" id="Animation_4j4ky"]
-length = 0.001
+length = 4.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -61,10 +61,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(242, 36)]
+"values": [Vector2(420, 36), Vector2(-25, 36)]
 }
 
 [sub_resource type="Animation" id="Animation_xunso"]
@@ -81,7 +81,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(300, 36), Vector2(-50, 36)]
+"values": [Vector2(420, 36), Vector2(-25, 36)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vpg0g"]
@@ -121,11 +121,11 @@ region_rect = Rect2(0, 0, 143.912, 255.578)
 
 [node name="Player" parent="." instance=ExtResource("1_hib5o")]
 z_index = 5
-position = Vector2(130, 143)
+position = Vector2(175, 143)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(128, 140)
-zoom = Vector2(4, 4)
+position = Vector2(178, 136)
+zoom = Vector2(6, 6)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(-6, 4)
@@ -146,10 +146,15 @@ position = Vector2(94, 66)
 shape = SubResource("WorldBoundaryShape2D_k4k6h")
 
 [node name="ScoreLabel" type="Label" parent="."]
-offset_left = 109.0
-offset_top = 69.0
-offset_right = 149.0
-offset_bottom = 92.0
+z_index = 5
+texture_filter = 2
+texture_repeat = 1
+offset_left = 167.0
+offset_top = 53.0
+offset_right = 211.0
+offset_bottom = 159.0
+scale = Vector2(0.3, 0.3)
+theme_override_font_sizes/font_size = 77
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -157,7 +162,7 @@ vertical_alignment = 1
 [node name="Pipes" type="Node" parent="."]
 
 [node name="BottomPipe" parent="Pipes" instance=ExtResource("2_clssr")]
-position = Vector2(242, 216)
+position = Vector2(420, 216)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pipes/BottomPipe"]
 libraries = {
@@ -166,7 +171,7 @@ libraries = {
 autoplay = "move"
 
 [node name="TopPipe" parent="Pipes" instance=ExtResource("3_osfey")]
-position = Vector2(242, 36)
+position = Vector2(420, 36)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pipes/TopPipe"]
 libraries = {
