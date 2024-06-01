@@ -1,7 +1,8 @@
 extends AnimatableBody2D
 
 @onready var player = $"../../Player"
-@onready var game_manager = %GameManager
+@onready var game_manager = $/root/Game/GameManager
+@onready var animation_player = $AnimationPlayer
 
 var has_passed_pipe = false
 
@@ -14,3 +15,6 @@ func check_pass():
 		has_passed_pipe = true
 	elif player.position.x <= position.x: 
 		has_passed_pipe = false
+
+func stop_animation():
+	animation_player.pause()

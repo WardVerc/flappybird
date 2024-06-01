@@ -6,13 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://baegc1ql0oaox" path="res://scenes/bottom_pipe.tscn" id="2_clssr"]
 [ext_resource type="PackedScene" uid="uid://cxvdhmr4lonqt" path="res://scenes/top_pipe.tscn" id="3_osfey"]
 [ext_resource type="PackedScene" uid="uid://duiugal601a37" path="res://scenes/killzone.tscn" id="4_alc1y"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cfp6u"]
+[ext_resource type="PackedScene" uid="uid://5n0eex65snkf" path="res://scenes/ui.tscn" id="7_srx22"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gf70d"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k4k6h"]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r31fb"]
 normal = Vector2(0, 1)
+distance = 7.0
 
 [sub_resource type="Animation" id="Animation_bbqiv"]
 length = 4.0
@@ -26,7 +26,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(420, 216), Vector2(-25, 216)]
+"values": [Vector2(420, 265), Vector2(-25, 265)]
 }
 
 [sub_resource type="Animation" id="Animation_unuq8"]
@@ -43,7 +43,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(420, 216), Vector2(-25, 216)]
+"values": [Vector2(420, 265), Vector2(-25, 265)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1vlpl"]
@@ -64,7 +64,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(420, 36), Vector2(-25, 36)]
+"values": [Vector2(420, 62), Vector2(-25, 62)]
 }
 
 [sub_resource type="Animation" id="Animation_xunso"]
@@ -81,7 +81,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(420, 36), Vector2(-25, 36)]
+"values": [Vector2(420, 62), Vector2(-25, 62)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vpg0g"]
@@ -93,66 +93,63 @@ _data = {
 [node name="Game" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
-unique_name_in_owner = true
 script = ExtResource("1_b81lu")
 
 [node name="Background" type="Node" parent="."]
 
 [node name="Background" type="Sprite2D" parent="Background"]
 z_index = -1
-position = Vector2(44, 138)
+position = Vector2(40.25, 164)
+scale = Vector2(1.05245, 1.29412)
 texture = ExtResource("2_btaik")
 region_enabled = true
 region_rect = Rect2(0, 0, 143.912, 255.578)
 
 [node name="Background2" type="Sprite2D" parent="Background"]
 z_index = -1
-position = Vector2(187, 138)
+position = Vector2(187, 164.5)
+scale = Vector2(1, 1.2902)
 texture = ExtResource("2_btaik")
 region_enabled = true
 region_rect = Rect2(0, 0, 143.912, 255.578)
 
 [node name="Background3" type="Sprite2D" parent="Background"]
 z_index = -1
-position = Vector2(330, 137)
+position = Vector2(330, 163.5)
+scale = Vector2(1, 1.29804)
 texture = ExtResource("2_btaik")
 region_enabled = true
 region_rect = Rect2(0, 0, 143.912, 255.578)
 
 [node name="Player" parent="." instance=ExtResource("1_hib5o")]
 z_index = 5
-position = Vector2(175, 143)
+position = Vector2(158, 169)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(178, 136)
+position = Vector2(174, 166)
 zoom = Vector2(6, 6)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-6, 4)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(126, 223)
-shape = SubResource("WorldBoundaryShape2D_cfp6u")
-
-[node name="Killzone" parent="." instance=ExtResource("4_alc1y")]
+[node name="Killzone bottom" parent="." instance=ExtResource("4_alc1y")]
 position = Vector2(14, -10)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(106, 234)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone bottom"]
+position = Vector2(106, 334)
 shape = SubResource("WorldBoundaryShape2D_gf70d")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Killzone"]
-position = Vector2(94, 66)
-shape = SubResource("WorldBoundaryShape2D_k4k6h")
+[node name="Killzone top" parent="." instance=ExtResource("4_alc1y")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone top"]
+position = Vector2(112, -6)
+shape = SubResource("WorldBoundaryShape2D_r31fb")
 
 [node name="ScoreLabel" type="Label" parent="."]
 z_index = 5
 texture_filter = 2
 texture_repeat = 1
-offset_left = 167.0
-offset_top = 53.0
-offset_right = 211.0
-offset_bottom = 159.0
+offset_left = 166.0
+offset_top = 17.0
+offset_right = 210.0
+offset_bottom = 123.0
 scale = Vector2(0.3, 0.3)
 theme_override_font_sizes/font_size = 77
 text = "0"
@@ -162,7 +159,7 @@ vertical_alignment = 1
 [node name="Pipes" type="Node" parent="."]
 
 [node name="BottomPipe" parent="Pipes" instance=ExtResource("2_clssr")]
-position = Vector2(420, 216)
+position = Vector2(420, 265)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pipes/BottomPipe"]
 libraries = {
@@ -171,10 +168,12 @@ libraries = {
 autoplay = "move"
 
 [node name="TopPipe" parent="Pipes" instance=ExtResource("3_osfey")]
-position = Vector2(420, 36)
+position = Vector2(420, 62)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pipes/TopPipe"]
 libraries = {
 "": SubResource("AnimationLibrary_vpg0g")
 }
 autoplay = "move"
+
+[node name="UI" parent="." instance=ExtResource("7_srx22")]

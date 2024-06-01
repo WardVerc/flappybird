@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://5n0eex65snkf"]
+
+[ext_resource type="Script" path="res://scripts/UI.gd" id="1_x2b4v"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_x2b4v")
+
+[node name="death_screen" type="Node2D" parent="."]
+
+[node name="RestartButton" type="Button" parent="death_screen"]
+offset_left = 394.0
+offset_top = 1185.0
+offset_right = 672.0
+offset_bottom = 1304.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 47
+text = "Restart"
+
+[node name="end_score_display" type="Node2D" parent="death_screen"]
+
+[node name="end_score_label" type="Label" parent="death_screen/end_score_display"]
+texture_filter = 2
+texture_repeat = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 491.0
+offset_top = 666.0
+offset_right = 776.0
+offset_bottom = 1348.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+theme_override_font_sizes/font_size = 500
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="death_screen/RestartButton" to="." method="_on_restart_button_pressed"]
