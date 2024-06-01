@@ -7,8 +7,21 @@ const JUMP_VELOCITY = -200.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+func _ready():
+	stop_animation()
+	
+func start_animation():
+	position.x = 158
+	position.y = 169
+	set_physics_process(true)
+	
+func stop_animation():
+	set_physics_process(false)
 
 func _physics_process(delta):
+	# make player unable to move on the x axis
+	position.x = 158
+	velocity.x = 0
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta

@@ -11,6 +11,12 @@ var score = 0
 func add_point():
 	score += 1
 	score_label.text = str(score)
+	
+func start_game():
+	score = 0
+	bottom_pipe.start_animation()
+	top_pipe.start_animation()
+	player.start_animation()
 
 func end_game():
 	bottom_pipe.stop_animation()

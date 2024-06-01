@@ -6,6 +6,17 @@ extends AnimatableBody2D
 
 var has_passed_pipe = false
 
+func _ready():
+	animation_player.stop()
+	
+func start_animation():
+	animation_player.stop(true) # the parameter true will 
+	# reset the position, default pauses the animation
+	animation_player.play()
+	
+func stop_animation():
+	animation_player.pause()
+
 func _process(delta):
 	check_pass()
 
@@ -15,6 +26,3 @@ func check_pass():
 		has_passed_pipe = true
 	elif player.position.x <= position.x: 
 		has_passed_pipe = false
-
-func stop_animation():
-	animation_player.pause()

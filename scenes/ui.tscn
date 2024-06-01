@@ -39,4 +39,61 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="ExitButton" type="Button" parent="death_screen"]
+offset_left = 394.0
+offset_top = 1321.0
+offset_right = 672.0
+offset_bottom = 1440.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 47
+text = "Back"
+
+[node name="main_menu_screen" type="Node2D" parent="."]
+
+[node name="StartButton" type="Button" parent="main_menu_screen"]
+offset_left = 394.0
+offset_top = 1185.0
+offset_right = 672.0
+offset_bottom = 1304.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 47
+text = "Start flappin"
+
+[node name="title_display" type="Node2D" parent="main_menu_screen"]
+
+[node name="title_label" type="Label" parent="main_menu_screen/title_display"]
+texture_filter = 2
+texture_repeat = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 121.0
+offset_top = 593.0
+offset_right = 2955.0
+offset_bottom = 1275.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+theme_override_font_sizes/font_size = 500
+text = "Flappy bird!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="QuitButton" type="Button" parent="main_menu_screen"]
+offset_left = 394.0
+offset_top = 1587.0
+offset_right = 672.0
+offset_bottom = 1706.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 47
+text = "Exit"
+
 [connection signal="pressed" from="death_screen/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="death_screen/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="main_menu_screen/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="main_menu_screen/QuitButton" to="." method="_on_quit_button_pressed"]
