@@ -1,0 +1,116 @@
+[gd_scene load_steps=14 format=3 uid="uid://cqs3qkt5nw2uu"]
+
+[ext_resource type="Script" path="res://scripts/pipes.gd" id="1_3ytui"]
+[ext_resource type="Texture2D" uid="uid://cwgrkgl5rk6nf" path="res://assets/sprites/Mobile - Flappy Bird - Version 12 Sprites.png" id="1_ijfqg"]
+[ext_resource type="PackedScene" uid="uid://duiugal601a37" path="res://scenes/killzone.tscn" id="2_y4m82"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vdnl"]
+atlas = ExtResource("1_ijfqg")
+region = Rect2(56, 460, 26, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_808yt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vdnl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ooflo"]
+atlas = ExtResource("1_ijfqg")
+region = Rect2(56, 440, 26, 22)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cnwxo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ooflo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d5usl"]
+size = Vector2(118, 2065)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ag5v"]
+atlas = ExtResource("1_ijfqg")
+region = Rect2(84, 322, 26, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_700tp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ag5v")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxjk5"]
+atlas = ExtResource("1_ijfqg")
+region = Rect2(84, 345, 26, 23)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ahyf4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxjk5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nsbj0"]
+size = Vector2(119, 2249)
+
+[node name="Pipes" type="Node2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(0.3, 0.3)
+script = ExtResource("1_3ytui")
+
+[node name="top" type="Area2D" parent="."]
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="top"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_808yt")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="top"]
+position = Vector2(2.08165e-12, -987.5)
+scale = Vector2(5, 84.5909)
+sprite_frames = SubResource("SpriteFrames_cnwxo")
+
+[node name="Killzone" parent="top" instance=ExtResource("2_y4m82")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="top/Killzone"]
+position = Vector2(0, -980)
+shape = SubResource("RectangleShape2D_d5usl")
+
+[node name="bottom" type="Area2D" parent="."]
+position = Vector2(2.08165e-12, 2.08165e-12)
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bottom"]
+position = Vector2(2.08165e-12, 400)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_700tp")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="bottom"]
+position = Vector2(2.08165e-12, 1530)
+scale = Vector2(5, 93.3913)
+sprite_frames = SubResource("SpriteFrames_ahyf4")
+
+[node name="Killzone" parent="bottom" instance=ExtResource("2_y4m82")]
+position = Vector2(2.08165e-12, 2.08165e-12)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bottom/Killzone"]
+position = Vector2(0, 1476)
+shape = SubResource("RectangleShape2D_nsbj0")

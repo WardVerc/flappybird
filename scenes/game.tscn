@@ -1,11 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dnaw6a364w2jb"]
+[gd_scene load_steps=9 format=3 uid="uid://dnaw6a364w2jb"]
 
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_b81lu"]
 [ext_resource type="PackedScene" uid="uid://dlcvwruhlsbqm" path="res://scenes/player.tscn" id="1_hib5o"]
 [ext_resource type="Texture2D" uid="uid://cwgrkgl5rk6nf" path="res://assets/sprites/Mobile - Flappy Bird - Version 12 Sprites.png" id="2_btaik"]
-[ext_resource type="PackedScene" uid="uid://baegc1ql0oaox" path="res://scenes/bottom_pipe.tscn" id="2_clssr"]
-[ext_resource type="PackedScene" uid="uid://cxvdhmr4lonqt" path="res://scenes/top_pipe.tscn" id="3_osfey"]
 [ext_resource type="PackedScene" uid="uid://duiugal601a37" path="res://scenes/killzone.tscn" id="4_alc1y"]
+[ext_resource type="Script" path="res://scripts/PipeSpawner.gd" id="6_0hcdj"]
 [ext_resource type="PackedScene" uid="uid://5n0eex65snkf" path="res://scenes/ui.tscn" id="7_srx22"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gf70d"]
@@ -14,86 +13,16 @@
 normal = Vector2(0, 1)
 distance = 7.0
 
-[sub_resource type="Animation" id="Animation_bbqiv"]
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(420, 265), Vector2(-25, 265)]
-}
-
-[sub_resource type="Animation" id="Animation_unuq8"]
-resource_name = "move"
-length = 4.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(420, 265), Vector2(-25, 265)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1vlpl"]
-_data = {
-"RESET": SubResource("Animation_bbqiv"),
-"move": SubResource("Animation_unuq8")
-}
-
-[sub_resource type="Animation" id="Animation_4j4ky"]
-length = 4.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(420, 62), Vector2(-25, 62)]
-}
-
-[sub_resource type="Animation" id="Animation_xunso"]
-resource_name = "move"
-length = 4.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(420, 62), Vector2(-25, 62)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vpg0g"]
-_data = {
-"RESET": SubResource("Animation_4j4ky"),
-"move": SubResource("Animation_xunso")
-}
-
 [node name="Game" type="Node2D"]
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_b81lu")
+
+[node name="PipeSpawner" type="Node" parent="."]
+script = ExtResource("6_0hcdj")
+
+[node name="Timer" type="Timer" parent="PipeSpawner"]
+wait_time = 2.0
 
 [node name="Background" type="Node" parent="."]
 
@@ -155,25 +84,5 @@ theme_override_font_sizes/font_size = 77
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="Pipes" type="Node" parent="."]
-
-[node name="BottomPipe" parent="Pipes" instance=ExtResource("2_clssr")]
-position = Vector2(420, 265)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pipes/BottomPipe"]
-libraries = {
-"": SubResource("AnimationLibrary_1vlpl")
-}
-autoplay = "move"
-
-[node name="TopPipe" parent="Pipes" instance=ExtResource("3_osfey")]
-position = Vector2(420, 62)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pipes/TopPipe"]
-libraries = {
-"": SubResource("AnimationLibrary_vpg0g")
-}
-autoplay = "move"
 
 [node name="UI" parent="." instance=ExtResource("7_srx22")]
