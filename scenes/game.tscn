@@ -22,7 +22,7 @@ script = ExtResource("1_b81lu")
 script = ExtResource("6_0hcdj")
 
 [node name="Timer" type="Timer" parent="PipeSpawner"]
-wait_time = 2.0
+wait_time = 1.628
 
 [node name="Background" type="Node" parent="."]
 

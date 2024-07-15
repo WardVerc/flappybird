@@ -99,12 +99,12 @@ position = Vector2(2.08165e-12, 2.08165e-12)
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="bottom"]
-position = Vector2(2.08165e-12, 400)
+position = Vector2(2.08165e-12, 316.667)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_700tp")
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="bottom"]
-position = Vector2(2.08165e-12, 1530)
+position = Vector2(2.08165e-12, 1446.67)
 scale = Vector2(5, 93.3913)
 sprite_frames = SubResource("SpriteFrames_ahyf4")
 
@@ -112,5 +112,5 @@ sprite_frames = SubResource("SpriteFrames_ahyf4")
 position = Vector2(2.08165e-12, 2.08165e-12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bottom/Killzone"]
-position = Vector2(0, 1476)
+position = Vector2(0, 1392.67)
 shape = SubResource("RectangleShape2D_nsbj0")
